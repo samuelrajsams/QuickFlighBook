@@ -1,0 +1,19 @@
+*{
+	margin: 0;
+	padding: 0;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.copyright{
+    background-color: rgb(104, 89, 89);
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+
+ /* Responsive Styles */
+// @media screen and (max-width: 767px){
+//     .copyright{
+//         position: relative;
+//     }
+// }
