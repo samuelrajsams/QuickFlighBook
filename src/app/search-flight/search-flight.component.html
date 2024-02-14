@@ -1,0 +1,40 @@
+<div id="searchBox" class="searchBox">
+    <form [formGroup]="searchFlightsForm">
+        <div id="searchBox1" class="searchBox1">
+            <div id="searchBox1_R1" class="searchBox1_R1">
+                <div id="sb1Box1" class="sb1Box1" [ngClass]="{'input-active' : isActive === true}">
+                    <label id="label1" class="label1">Source:</label>
+                    <input class="input1" formControlName="originLocationCode" type="search"
+                        (focusin)="focusEvent(true)" (focusout)="focusEvent(false)">
+                    <!-- <div class="kBtJZSbtiCS4lS6mhgCu">
+                        <div id="outboundItem-0" class="eploMJD1n9BP3PiEDOVi bXPmBRr1pylCqzkIxs7X">
+                            <i class="ikZtVUaUNq8xr4ieNUC1 lLfJiYEUx7Cidl1pRyLQ"></i>
+                            <div class="Yxj1leJo3fpodncgJZq7">
+                                <div class="ldW_MDNWCrLXNIA1VJQS">Rajahmundry, India</div>
+                                <div class="GuTwH6o849ztUygTOFvC">RJA</div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div id="sb1Box4" class="sb1Box4" [ngClass]="{'input-active' : isActive2 === true}">
+                    <label id="label4" class="label4">Destination:</label>
+                    <input formControlName="destinationLocationCode" class="input4" (focusin)="focusEvent2(true)"
+                        (focusout)="focusEvent2(false)" type="search">
+                    <!-- <div
+                        [ngClass]="{'flyToValAutocomplete': this.autocompleteStatus2 == 1, 'hideItem' : this.autocompleteStatus2 == 0}">
+                        <option (click)="autocomplete2_confirm(option)" [value]="option"
+                            *ngFor="let option of flyToValFilter;let i=index;">{{option}}</option>
+                    </div> -->
+                </div>
+                <div class="sb1Box2">
+                    <label id="label2" class="label2">Departure:</label>
+                    <input class="input2" type="date" id="departDate">
+                </div>
+            </div>
+
+            <div id="searchBox2" class="searchBox2">
+                <button class="searchButton" (click)="getFlightParameters()">search</button>
+            </div>
+        </div>
+    </form>
+</div>

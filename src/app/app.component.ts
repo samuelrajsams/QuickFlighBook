@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterState } from '@angular/router';
+import { AppService } from './services/app-service';
 
 let weatherData1: any;
-export{
+export {
   weatherData1
 }
 
@@ -14,13 +15,20 @@ export{
 
 export class AppComponent implements OnInit {
   title = 'Angular';
-  data: any =[];
+  data: any = [];
 
-  constructor(){
+  constructor(public appService: AppService) {
   }
   ngOnInit(): void {
-    console.log("app init");
-}
+    this.loadToken();
+
+  }
+
+  loadToken () {
+    this.appService.getToken().subscribe(resp => {
+      sessionStorage.setItem('tokeParams', JSON.stringify(resp))
+    })
+  }
 
 }
 

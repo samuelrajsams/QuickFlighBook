@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api'
+  //apiUrl: 'http://localhost:3000/api',
+  apiUrl: 'https://test.api.amadeus.com/v1/',
+  grant_type: 'client_credentials',
+  client_id: 'RLRo1QiMpe4Ea3tz9W1IguNGLifL7cdP',
+  client_secret: 'TISFiIGKM8cZ4p5o',
+  apiUrl2: "https://test.api.amadeus.com/v2/",
 };
 
 /*
