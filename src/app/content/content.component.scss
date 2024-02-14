@@ -73,7 +73,7 @@ $font-family_3: "Roboto", sans-serif;
     flex-direction: column;
     width: 1400px;
     height: fit-content;
-
+    margin-bottom: 22px;
 
     .searchTitle {
         background-color: #f4e2e2;
@@ -117,7 +117,7 @@ $font-family_3: "Roboto", sans-serif;
         display: flex;
         flex-direction: column;
         width: fit-content;
-        height: 320px;
+        height: 260px;
 
         .searchBox1_R1 {
             width: fit-content;
