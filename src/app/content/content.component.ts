@@ -88,7 +88,7 @@ export class ContentComponent implements OnInit {
 
   getFlightParameters() {
     // Async function with promise - 1s delay
-
+    this.router.navigate(['/search-results'])
 
   }
 
