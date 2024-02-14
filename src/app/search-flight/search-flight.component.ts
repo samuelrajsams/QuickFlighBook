@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FlightDataAPIService } from '../services/flightDataAPI/flight-data-api.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,13 @@ import { Router } from '@angular/router';
 export class SearchFlightComponent {
   isActive: boolean = false;
   isActive2: boolean = false;
+  
+  sourceSearchResults: string[] = [];
+  destinationSearchResults: string[] = [];
+  originLocationCode: FormControl = new FormControl();
   searchFlightsForm: FormGroup;
+  mockData: string[] = ['Hyderabad (hyd)', 'Delhi (del)', 'Orange (Chennai (ch))', 'Bangalore (bng)', 'Kochi (kc)', 'Ayodya (ad)', 'Trupati (tpty)', 'Gannavaram (gnv)'];
+
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     public flightService: FlightDataAPIService) {
@@ -22,6 +28,34 @@ export class SearchFlightComponent {
   }
 
   ngOnInit(): void {
+  }
+
+    setSource(result: string): void {
+    this.searchFlightsForm.get('originLocationCode')?.setValue(result);
+    this.sourceSearchResults = [];
+  }
+
+  setDestination(result: string): void {
+    this.searchFlightsForm.get('destinationLocationCode')?.setValue(result);
+    this.destinationSearchResults = []; 
+  }
+
+   onSearchSource(): void {
+    if (this.searchFlightsForm.value.originLocationCode.trim() === '') {
+      this.sourceSearchResults = [];
+    } else {
+       this.sourceSearchResults = this.mockData
+        .filter(item => item.toLowerCase().includes(this.searchFlightsForm.value.originLocationCode.toLowerCase()));
+    }
+  }
+
+  onSearchDestination(): void {
+    if (this.searchFlightsForm.value.destinationLocationCode.trim() === '') {
+      this.destinationSearchResults = [];
+    } else {
+       this.destinationSearchResults = this.mockData
+        .filter(item => item.toLowerCase().includes(this.searchFlightsForm.value.destinationLocationCode.toLowerCase()));
+    }
   }
 
   focusEvent(status: boolean) {

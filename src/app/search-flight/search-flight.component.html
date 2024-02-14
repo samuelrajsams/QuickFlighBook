@@ -5,7 +5,10 @@
                 <div id="sb1Box1" class="sb1Box1" [ngClass]="{'input-active' : isActive === true}">
                     <label id="label1" class="label1">Source:</label>
                     <input class="input1" formControlName="originLocationCode" type="search"
-                        (focusin)="focusEvent(true)" (focusout)="focusEvent(false)">
+                        (focusin)="focusEvent(true)" (focusout)="focusEvent(false)" (input)="onSearchSource()">
+                    <div *ngIf="sourceSearchResults.length > 0">
+                            <p style="padding: 10px;" *ngFor="let result of sourceSearchResults" (click)="setSource(result)">{{ result }}</p>
+                    </div>
                     <!-- <div class="kBtJZSbtiCS4lS6mhgCu">
                         <div id="outboundItem-0" class="eploMJD1n9BP3PiEDOVi bXPmBRr1pylCqzkIxs7X">
                             <i class="ikZtVUaUNq8xr4ieNUC1 lLfJiYEUx7Cidl1pRyLQ"></i>
@@ -19,7 +22,10 @@
                 <div id="sb1Box4" class="sb1Box4" [ngClass]="{'input-active' : isActive2 === true}">
                     <label id="label4" class="label4">Destination:</label>
                     <input formControlName="destinationLocationCode" class="input4" (focusin)="focusEvent2(true)"
-                        (focusout)="focusEvent2(false)" type="search">
+                        (focusout)="focusEvent2(false)" type="search" (input)="onSearchDestination()">
+                        <div *ngIf="destinationSearchResults.length > 0">
+                            <p style="padding: 10px;" *ngFor="let result of destinationSearchResults" (click)="setDestination(result)">{{ result }}</p>
+                        </div>
                     <!-- <div
                         [ngClass]="{'flyToValAutocomplete': this.autocompleteStatus2 == 1, 'hideItem' : this.autocompleteStatus2 == 0}">
                         <option (click)="autocomplete2_confirm(option)" [value]="option"

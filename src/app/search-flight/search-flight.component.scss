@@ -270,10 +270,11 @@ $font-family_3: "Roboto", sans-serif;
 
     .searchBox2 {
 
-        height: 320px;
+        // height: 320px;
         display: flex;
         align-items: center;
         justify-content: center;
+            margin-top: 75px;
 
         // background-color: #932c2c;
         .searchButton {
