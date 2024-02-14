@@ -706,3 +706,11 @@ display: flex;
     transition: all .2s ease-in-out;
     white-space: nowrap;
 }
+
+
+:host ::ng-deep .search_with_result search-flight .searchBox {
+    margin: auto 9%;
+    border-radius: 0px;
+    padding-left: 0px;
+    width: auto;
+}
