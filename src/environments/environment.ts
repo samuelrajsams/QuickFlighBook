@@ -9,7 +9,7 @@ export const environment = {
   grant_type: 'client_credentials',
   client_id: 'RLRo1QiMpe4Ea3tz9W1IguNGLifL7cdP',
   client_secret: 'TISFiIGKM8cZ4p5o',
-  apiUrl2: "https://test.api.amadeus.com/v2/",
+  apiUrl2: "https://test.api.amadeus.com/v2/"
 };
 
 /*

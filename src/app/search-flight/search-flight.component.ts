@@ -16,7 +16,6 @@ export class SearchFlightComponent {
   destinationSearchResults: string[] = [];
   originLocationCode: FormControl = new FormControl();
   searchFlightsForm: FormGroup;
-  mockData: string[] = ['Hyderabad (hyd)', 'Delhi (del)', 'Orange (Chennai (ch))', 'Bangalore (bng)', 'Kochi (kc)', 'Ayodya (ad)', 'Trupati (tpty)', 'Gannavaram (gnv)'];
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
@@ -41,22 +40,20 @@ export class SearchFlightComponent {
   }
 
   onSearchSource(): void {
-    this.searchAirports();
+    const originLocationCode = this.searchFlightsForm.value.originLocationCode;
+    this.searchAirports(originLocationCode, 'source');
     if (this.searchFlightsForm.value.originLocationCode.trim() === '') {
       this.sourceSearchResults = [];
-    } else {
-      this.sourceSearchResults = this.mockData
-        .filter(item => item.toLowerCase().includes(this.searchFlightsForm.value.originLocationCode.toLowerCase()));
-    }
+    } 
   }
 
   onSearchDestination(): void {
-    this.searchAirports();
+    const destinationLocationCode = this.searchFlightsForm.value.destinationLocationCode;
+    this.searchAirports(destinationLocationCode, 'destination');
     if (this.searchFlightsForm.value.destinationLocationCode.trim() === '') {
       this.destinationSearchResults = [];
     } else {
-      this.destinationSearchResults = this.mockData
-        .filter(item => item.toLowerCase().includes(this.searchFlightsForm.value.destinationLocationCode.toLowerCase()));
+
     }
   }
 
@@ -86,11 +83,14 @@ export class SearchFlightComponent {
     });
   }
 
-  searchAirports() {
-    //https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=HYD&countryCode=IN
-    const type = 'HYD'
-    this.flightService.getAirportLocations(type).subscribe(resp => {
-      console.log(resp);
+  searchAirports(value: any, type: string) {
+    this.flightService.getAirportLocations(value).subscribe((resp: any) => {
+      if (type === 'source') {
+        this.sourceSearchResults = resp.data.map((item: any) => item.name);
+      } else {
+        this.destinationSearchResults = resp.data.map((item: any) => item.name);
+      }
+      console.log(this.sourceSearchResults);
     })
   }
 

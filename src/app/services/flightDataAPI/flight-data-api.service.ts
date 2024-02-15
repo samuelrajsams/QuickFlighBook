@@ -42,8 +42,8 @@ export class FlightDataAPIService {
       'Authorization': `Bearer ${JSON.parse(tokeParams).access_token}`
     })
     return this.http.get(`${environment.apiUrl}reference-data/locations?subType=AIRPORT&keyword=${ariportName}&countryCode=IN`, 
-    {headers}).pipe(map((tokenParams: any) => {
-      return tokenParams;
+    {headers}).pipe(map((searchedData: any) => {
+      return searchedData;
     }));
   }
 }
