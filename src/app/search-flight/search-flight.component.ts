@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class SearchFlightComponent {
   isActive: boolean = false;
   isActive2: boolean = false;
-  
+
   sourceSearchResults: string[] = [];
   destinationSearchResults: string[] = [];
   originLocationCode: FormControl = new FormControl();
@@ -30,30 +30,32 @@ export class SearchFlightComponent {
   ngOnInit(): void {
   }
 
-    setSource(result: string): void {
+  setSource(result: string): void {
     this.searchFlightsForm.get('originLocationCode')?.setValue(result);
     this.sourceSearchResults = [];
   }
 
   setDestination(result: string): void {
     this.searchFlightsForm.get('destinationLocationCode')?.setValue(result);
-    this.destinationSearchResults = []; 
+    this.destinationSearchResults = [];
   }
 
-   onSearchSource(): void {
+  onSearchSource(): void {
+    this.searchAirports();
     if (this.searchFlightsForm.value.originLocationCode.trim() === '') {
       this.sourceSearchResults = [];
     } else {
-       this.sourceSearchResults = this.mockData
+      this.sourceSearchResults = this.mockData
         .filter(item => item.toLowerCase().includes(this.searchFlightsForm.value.originLocationCode.toLowerCase()));
     }
   }
 
   onSearchDestination(): void {
+    this.searchAirports();
     if (this.searchFlightsForm.value.destinationLocationCode.trim() === '') {
       this.destinationSearchResults = [];
     } else {
-       this.destinationSearchResults = this.mockData
+      this.destinationSearchResults = this.mockData
         .filter(item => item.toLowerCase().includes(this.searchFlightsForm.value.destinationLocationCode.toLowerCase()));
     }
   }
@@ -82,6 +84,14 @@ export class SearchFlightComponent {
         sessionStorage.setItem('searchedFlights', JSON.stringify(resp));
       }
     });
+  }
+
+  searchAirports() {
+    //https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=HYD&countryCode=IN
+    const type = 'HYD'
+    this.flightService.getAirportLocations(type).subscribe(resp => {
+      console.log(resp);
+    })
   }
 
 }

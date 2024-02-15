@@ -1,5 +1,5 @@
 import { Injectable, Output } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators'
 // var flightDataFromAPI: object;
@@ -20,7 +20,7 @@ export class FlightDataAPIService {
   ngOnInit(): void { }
 
   getAvailableFlights(apiParams: any) {
-    const tokeParams:any = sessionStorage.getItem('tokeParams');
+    const tokeParams: any = sessionStorage.getItem('tokeParams');
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${JSON.parse(tokeParams).access_token}`
@@ -33,6 +33,18 @@ export class FlightDataAPIService {
       return resp;
     }));
 
+  }
+
+  getAirportLocations(ariportName: string) {
+    const tokeParams: any = sessionStorage.getItem('tokeParams');
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${JSON.parse(tokeParams).access_token}`
+    })
+    return this.http.get(`${environment.apiUrl}reference-data/locations?subType=AIRPORT&keyword=${ariportName}&countryCode=IN`, 
+    {headers}).pipe(map((tokenParams: any) => {
+      return tokenParams;
+    }));
   }
 }
 
