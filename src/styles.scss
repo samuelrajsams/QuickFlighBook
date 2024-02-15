@@ -37,3 +37,14 @@ $Angular-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.auto_search{
+      background: #ffffff;
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #e2e2e2;
+        border-radius: 8px;
+        z-index: 9;
+        font-size: 16px;
+}
