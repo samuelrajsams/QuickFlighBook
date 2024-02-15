@@ -14,7 +14,9 @@ export class SearchResultsComponent implements OnInit {
 
   searchedFlights: any = JSON.parse(sessionStorage.getItem('searchedFlights') ?? '');
 
-  constructor() {
+  constructor(
+    private router: Router,
+  ) {
     // import data through the router
 
 
@@ -24,6 +26,10 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     // Call seats resevation
 
+  }
+
+  getFlightParameters() {
+     this.router.navigateByUrl('/confirm');
   }
 
 

@@ -15,7 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 import {MatSelectModule} from '@angular/material/select';
-import { SearchFlightComponent } from './search-flight/search-flight.component'; 
+import { SearchFlightComponent } from './search-flight/search-flight.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component'; 
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SearchFlightComponent } from './search-flight/search-flight.component';
     MyAccountComponent,
     DurationConverterPipe,
     SearchFlightComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
